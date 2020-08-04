@@ -1,9 +1,14 @@
 package Planes;
 
+import models.ExperimentalPlaneSpecifications;
+import models.MilitaryAircraftSpecifications;
+import models.PassengerPlaneSpecifications;
+
 import java.util.Objects;
 
 abstract public class Plane {
-    String model;
+
+    private String model;
     private int maxSpeed;
     private int maxFlightDistance;
     private int maxLoadCapacity;
@@ -15,21 +20,41 @@ abstract public class Plane {
         this.maxLoadCapacity = maxLoadCapacity;
     }
 
+    public Plane(MilitaryAircraftSpecifications aircraftSpecifications) {
+        this.model = aircraftSpecifications.model;
+        this.maxSpeed = aircraftSpecifications.maxSpeed;
+        this.maxFlightDistance = aircraftSpecifications.maxFlightDistance;
+        this.maxLoadCapacity = aircraftSpecifications.maxLoadCapacity;
+    }
+
+    public Plane(ExperimentalPlaneSpecifications experimentalPlaneSpecifications) {
+        this.model = experimentalPlaneSpecifications.model;
+        this.maxSpeed = experimentalPlaneSpecifications.maxSpeed;
+        this.maxFlightDistance = experimentalPlaneSpecifications.maxFlightDistance;
+        this.maxLoadCapacity = experimentalPlaneSpecifications.maxLoadCapacity;
+    }
+
+    public Plane(PassengerPlaneSpecifications passengerPlaneSpecifications) {
+        this.model = passengerPlaneSpecifications.model;
+        this.maxSpeed = passengerPlaneSpecifications.maxSpeed;
+        this.maxFlightDistance = passengerPlaneSpecifications.maxFlightDistance;
+        this.maxLoadCapacity = passengerPlaneSpecifications.maxLoadCapacity;
+    }
+
     public String getModel() {
         return model;
     }
 
-    public int getMS() {
+    public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public int Get_Max_Flight_Distance() {
+    public int getMaxFlightDistance() {
         return maxFlightDistance;
     }
 
-    public int getMinLoadCapacity() {
-        int result = this.maxLoadCapacity;
-        return result;
+    public int getMaxLoadCapacity() {
+        return maxLoadCapacity;
     }
 
     @Override
@@ -43,10 +68,10 @@ abstract public class Plane {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Plane)) return false;
-        Plane plane = (Plane) o;
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof Plane)) return false;
+        Plane plane = (Plane) object;
         return maxSpeed == plane.maxSpeed &&
                 maxFlightDistance == plane.maxFlightDistance &&
                 maxLoadCapacity == plane.maxLoadCapacity &&
